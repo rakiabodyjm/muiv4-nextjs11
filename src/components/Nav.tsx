@@ -1,18 +1,21 @@
 import { Box, Button, ButtonGroup, Switch, Theme, Typography } from '@material-ui/core'
 import { useTheme } from '@material-ui/styles'
 import { useRouter } from 'next/dist/client/router'
-import React from 'react'
+import React, { Dispatch, SetStateAction } from 'react'
 
 export default function Nav({
   colorScheme,
   toggleColorScheme,
+  title,
+  setTitle,
 }: {
   colorScheme: 'light' | 'dark'
   toggleColorScheme: () => void
+  title: string
+  setTitle: Dispatch<SetStateAction<string>>
 }) {
   const theme: Theme = useTheme()
   const router = useRouter()
-
   return (
     <div
       style={{
@@ -25,7 +28,7 @@ export default function Nav({
       }}
     >
       <div>
-        <Typography variant="h6">Practice Problem</Typography>
+        <Typography variant="h6">{title}</Typography>
       </div>
       <div>
         <ButtonGroup aria-label="outlined primary button group">
@@ -53,6 +56,9 @@ export default function Nav({
         <Switch
           onChange={() => {
             toggleColorScheme()
+            setTitle(Math.floor(Math.random() * 100).toString())
+
+            // setTitle('TITLE CHANGED')
           }}
         />
       </Box>

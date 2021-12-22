@@ -19,10 +19,16 @@ function MyApp({
 }: AppProps & { toggleColorScheme: () => void; colorScheme: 'light' | 'dark' }) {
   const theme: Theme = useTheme()
   axios.defaults.baseURL = process.env.NEXT_PUBLIC_HOST
+  const [title, setTitle] = useState('hello')
 
   return (
     <>
-      <Nav colorScheme={colorScheme} toggleColorScheme={toggleColorScheme} />
+      <Nav
+        title={title}
+        setTitle={setTitle}
+        colorScheme={colorScheme}
+        toggleColorScheme={toggleColorScheme}
+      />
       <Component {...pageProps} />
     </>
   )
