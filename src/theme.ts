@@ -42,6 +42,10 @@ const theme = (additionalProps: CustomThemeProperties): Theme => {
         root: {
           padding: `4px 16px`,
         },
+
+        outlined: {
+          padding: `4px 16px`,
+        },
       },
     },
   }

@@ -1,6 +1,7 @@
 import { Box, CssBaseline, Switch, Theme, Typography, useMediaQuery } from '@material-ui/core'
 import { ThemeProvider, useTheme, withStyles } from '@material-ui/styles'
 import { User } from '@src/api/userApi'
+import Nav from '@src/components/Nav'
 import themeCreator from '@src/theme'
 import axios from 'axios'
 import type { AppProps } from 'next/app'
@@ -16,37 +17,12 @@ function MyApp({
   colorScheme,
   toggleColorScheme,
 }: AppProps & { toggleColorScheme: () => void; colorScheme: 'light' | 'dark' }) {
-  const [users, setUsers] = useState<User[]>([])
   const theme: Theme = useTheme()
   axios.defaults.baseURL = process.env.NEXT_PUBLIC_HOST
 
   return (
     <>
-      <div
-        style={{
-          background: theme.palette.primary.main,
-          padding: 4,
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          marginBottom: theme.spacing(4),
-        }}
-      >
-        <div>
-          <Typography variant="h6">Practice Problem</Typography>
-        </div>
-        <Box display="flex" alignItems="center">
-          <Typography variant="body1">
-            Color Scheme: <Typography component="span">{colorScheme.toUpperCase()}</Typography>
-          </Typography>
-          <Switch
-            onChange={() => {
-              toggleColorScheme()
-            }}
-          />
-        </Box>
-      </div>
-
+      <Nav colorScheme={colorScheme} toggleColorScheme={toggleColorScheme} />
       <Component {...pageProps} />
     </>
   )
